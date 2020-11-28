@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Pokedex.ViewModels
@@ -22,14 +23,14 @@ namespace Pokedex.ViewModels
             set { SetProperty(ref _isRunLoading, value); }
         }
 
-        public Command CarregandoMais { get; }
+        public Command LoadingMore { get; }
 
 
         public TodosPokemonViewModel()
         {
             isRunLoading = false;
             ListPokemon = new ObservableCollection<Results>();
-            CarregandoMais = new Command(CarregarMaisPokemon);
+            LoadingMore = new Command(CarregarMaisPokemon);
             FeedList();
         }
 
@@ -64,11 +65,37 @@ namespace Pokedex.ViewModels
             }
         }
 
-        private void CarregarMaisPokemon()
+        private async void CarregarMaisPokemon()
         {
             //activity rodando
             isRunLoading = true;
 
+            //quantidade que já tem mais 20
+            int qtdPokemon = ListPokemon.Count + 20;
+
+            //lista de pokemon completa
+
+            var listPokemonsFull = new ObservableCollection<Results>();
+
+            //executando em paralelo
+
+            await Task.Run(() =>
+            {
+              //busca todos os pokemons através da quantidade estabelecida.
+              listPokemonsFull = GetAllPokemons(qtdPokemon);
+
+              //esse método irá limpar a lista buscando sempre +20 pokemons e não duplicando / pesando a aplicação
+              ListPokemon.Clear();
+
+              foreach (var pokemon in listPokemonsFull)
+              {
+                  //adiciona o pokemon na lista
+                  ListPokemon.Add(pokemon);
+              }
+
+            });
+            //aqui o activity irá sumir após a busca ter sido completada.
+            isRunLoading = false;
         }
     }
 }
