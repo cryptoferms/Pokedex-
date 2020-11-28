@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Pokedex.Services;
+using Pokedex.View;
+using Refit;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
@@ -9,7 +12,71 @@ namespace Pokedex.ViewModels
     {
         public BuscaPokemonViewModel()
         {
-            GoCategoryPokemon
+            //chamando o método  que irá Filtrar os pokemon por nome sempre que clicar na busca
+
+            GoCategoryPokemon = new Command(OpenCategoryPokemon);
+            GoAllPokemon = new Command(OpenAllPokemon);
+            SearchPokemon = new Command(FilterPokemonAction);
+
+            //messagingCenter esperando receber a mensagem com o mesmo nome.
+            //quando receber, aciona o método FilterPokemonByName.
+            MessagingCenter.Subscribe<string>(this, "Pokemon", (sender) =>
+            {
+                FilterPokemonByName(sender);
+            });
+        }
+
+        private void FilterPokemonAction()
+        {
+             FilterPokemonByName();
+        }
+
+        private async void FilterPokemonByName(string nomePokemon = null)
+        {
+            //string pokemon recebe o que o usuario digitar
+            if (string.IsNullOrEmpty(FilterPokemon))
+                FilterPokemon = "";
+            String pokemon = FilterPokemon.Trim().ToLower();
+
+            if (!string.IsNullOrEmpty(nomePokemon))
+                pokemon = nomePokemon;
+
+            try
+            {
+                //api cliente que recebe nossa URL definida no caminho Base
+                var apiClient = RestService.For<IPokemonApi>(BasePath.BaseUrl);
+                //essa variavel irá receber a URL com o nome do pokemon
+                var pokemonnome = await apiClient.GetPokemonAsync(pokemon);
+
+                //operação feita para exibir a altura em metros e o peso em KG
+                float resultHeight = (float)pokemonnome.Height / (float)10;
+                float resultWeight = (float)pokemonnome.Weight / (float)10;
+
+                //dados que serão exibidos na view
+                NamePokemon = string.Format($"Nome: {pokemonnome.Name}");
+                IdPokemon = string.Format($"ID: {pokemonnome.Id}");
+                HeightPokemon = string.Format($"Altura: {resultHeight}");
+                WeightPokemon = string.Format($"Peso: {resultWeight}");
+                BaseExperience = string.Format($"Experiência Base: {pokemonnome.Base_experience}");
+                Image = string.Format($"https://pokeres.bastionbot.org/images/pokemon/{pokemonnome.Id}.png");
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Erro na busca de Pokemon, tente novamente mais tarde" + e.Message);
+            }
+
+        }
+
+        //Acessa a pagina de todos os pokemons
+        private async void OpenAllPokemon()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new TodosPokemon());
+        }
+
+        private async void OpenCategoryPokemon()
+        {
+            await App.Current.MainPage.Navigation.PushAsync(new CategoriaPokemon());
         }
 
         #region Propriedades de Binding
@@ -63,7 +130,7 @@ namespace Pokedex.ViewModels
         public string Abilities
         {
             get { return _abilities; }
-            set { SetProperty(ref _abilities , value); }
+            set { SetProperty(ref _abilities, value); }
         }
 
 
