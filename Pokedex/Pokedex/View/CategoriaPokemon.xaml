@@ -1,12 +1,86 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Pokedex.View.CategoriaPokemon">
+             x:Class="Pokedex.View.CategoriaPokemon"
+             Title="Pokemons por Categoria"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="True"
+             BackgroundColor="#C32D2F">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="10,0">
+            <Frame
+                Padding="2"
+                Margin="10"
+                CornerRadius="10"
+                BackgroundColor="#931f21"
+                HasShadow="False"
+                BorderColor="Gray"
+                >
+                <Picker x:Name="categoria_pokemon"
+                        Title="Selecione um tipo de Pokemon"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        TitleColor="White"
+                        SelectedIndexChanged="categoria_pokemon_SelectedIndexChanged">
+                    <Picker.Items>
+                        <x:String>bug</x:String>
+                        <x:String>dark</x:String>
+                        <x:String>dragon</x:String>
+                        <x:String>electric</x:String>
+                        <x:String>fairy</x:String>
+                        <x:String>fighting</x:String>
+                        <x:String>fire</x:String>
+                        <x:String>flying</x:String>
+                        <x:String>ghost</x:String>
+                        <x:String>grass</x:String>
+                        <x:String>ground</x:String>
+                        <x:String>ice</x:String>
+                        <x:String>normal</x:String>
+                        <x:String>poison</x:String>
+                        <x:String>psychic</x:String>
+                        <x:String>rock</x:String>
+                        <x:String>steel</x:String>
+                        <x:String>water</x:String>
+                    </Picker.Items>
+                </Picker>
+            </Frame>
+            <ScrollView>
+                    <CollectionView SelectionMode="Single"
+                                SelectionChanged="CollectionView_SelectionChanged"
+                                RemainingItemsThreshold="5"
+                                RemainingItemsThresholdReached="categoria_pokemon_SelectedIndexChanged"
+                                ItemsSource="{Binding ListPokemon}"
+                                >
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout ItemSpacing="20" Orientation="Vertical" />
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="10"
+                                   CornerRadius="10"
+                                   Margin="10,0"
+                                   HasShadow="False">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding image}"
+                                               HeightRequest="100" WidthRequest="100"/>
+                                        <Label Grid.Column="2"
+                                               Text="{Binding name}"
+                                               FontSize="15"
+                                               VerticalTextAlignment="Center"
+                                               TextColor="Black"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

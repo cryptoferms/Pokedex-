@@ -74,7 +74,7 @@ namespace Pokedex.ViewModels
         {
             await App.Current.MainPage.Navigation.PushAsync(new TodosPokemon());
         }
-
+        //Navega para a pagina de categoria dos Pokemon
         private async void OpenCategoryPokemon()
         {
             await App.Current.MainPage.Navigation.PushAsync(new CategoriaPokemon());

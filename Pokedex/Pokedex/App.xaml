@@ -8,6 +8,9 @@
             <Setter Property="BackgroundColor" Value="#931F21"></Setter>
             <Setter Property="CornerRadius" Value="15"></Setter>
         </Style>
-
+        <Style TargetType="NavigationPage">
+            <Setter Property="BackgroundColor" Value="#C32D2F"/>
+            <Setter Property="BarBackgroundColor" Value="#931F21"/>
+        </Style>
     </Application.Resources>
 </Application>
