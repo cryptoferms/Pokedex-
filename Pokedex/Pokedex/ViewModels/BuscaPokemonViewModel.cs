@@ -54,10 +54,11 @@ namespace Pokedex.ViewModels
 
                 //dados que serão exibidos na view
                 NamePokemon = string.Format($"Nome: {pokemonnome.Name}");
-                IdPokemon = string.Format($"ID: {pokemonnome.Id}");
+                IdPokemon = string.Format($"N°: {pokemonnome.Id}");
                 HeightPokemon = string.Format($"Altura: {resultHeight}");
-                WeightPokemon = string.Format($"Peso: {resultWeight}");
+                WeightPokemon = string.Format($"Peso: {resultWeight} KG");
                 BaseExperience = string.Format($"Experiência Base: {pokemonnome.Base_experience}");
+                Abilities = string.Format($"Habilidades: {pokemonnome.Abilities}");
                 Image = string.Format($"https://pokeres.bastionbot.org/images/pokemon/{pokemonnome.Id}.png");
 
             }

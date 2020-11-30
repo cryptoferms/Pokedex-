@@ -14,7 +14,7 @@
                    CornerRadius="15"
                    HasShadow="False"
                    BackgroundColor="#931f21">
-                <Entry Placeholder="Digite o nome do Pokemon"
+                <Entry Placeholder="Digite o nome ou n° do Pokemon"
                        PlaceholderColor="White"
                        BackgroundColor="{OnPlatform iOS=#931f21}"
                        Text="{Binding FilterPokemon}"
@@ -33,7 +33,7 @@
                 <Grid RowSpacing="10" ColumnSpacing="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"></RowDefinition>
-                        <RowDefinition Height="250"></RowDefinition>
+                        <RowDefinition Height="200"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition Height="40"></RowDefinition>
                     </Grid.RowDefinitions>
@@ -42,6 +42,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Column="0"
+                           Grid.ColumnSpan="1"
                            Grid.Row="0"
                            Text="{Binding NamePokemon}"
                            HorizontalTextAlignment="Start"
@@ -50,18 +51,41 @@
                            />
                     <Image HeightRequest="20"
                            Grid.ColumnSpan="2"
-                           Grid.Row="1">
+                           Grid.Row="1"
+                           InputTransparent="True"
+                           >
                         <Image.Source>
                             <UriImageSource Uri="{Binding Image}"
                                             CacheValidity="14"
                                             CachingEnabled="True"/>
                         </Image.Source>
                     </Image>
+                    <Label Grid.ColumnSpan="2"
+                           Grid.Row="2"
+                           Text="{Binding BaseExperience}"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"/>
+                    <Label Grid.Column="0"
+                           Grid.Row="3"
+                           Text="{Binding HeightPokemon}"
+                           TextColor="White">
+                    </Label>
+                    <Label Grid.Column="1"
+                           Grid.Row="3"
+                           Text="{Binding WeightPokemon}"
+                           TextColor="White"
+                           ></Label>
+                    <Label Grid.Column="1"
+                           Grid.Row="0"
+                           Text="{Binding IdPokemon}"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center">
+                        
+                    </Label>
                 </Grid>
-                
-                
             </Frame>
         </StackLayout>
     </ScrollView>
-    
 </ContentPage>
