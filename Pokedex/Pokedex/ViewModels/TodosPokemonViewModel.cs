@@ -22,9 +22,7 @@ namespace Pokedex.ViewModels
             get { return _isRunLoading; }
             set { SetProperty(ref _isRunLoading, value); }
         }
-
         public Command LoadingMore { get; }
-
 
         public TodosPokemonViewModel()
         {

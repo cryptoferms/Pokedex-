@@ -43,12 +43,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ActivityIndicator IsRunning="{Binding IsRunLoading}"
-                               Color="red"/>
             <Button Text="Carregar mais Pokemons"
                     TextColor="White"
                     Style="{StaticResource Button}"
-                    Command="{Binding CarregarMaisPokemon}"/>
+                    Command="{Binding LoadingMore}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
