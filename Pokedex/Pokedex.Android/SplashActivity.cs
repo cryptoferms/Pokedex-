@@ -28,7 +28,6 @@ namespace Pokedex.Droid
 
         public override void OnBackPressed()
         {
-            base.OnBackPressed();
         }
 
         async void SimulateStartup()

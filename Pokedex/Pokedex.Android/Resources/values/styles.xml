@@ -14,16 +14,19 @@
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
     <item name="colorAccent">#FFFFFF</item>
+    <item name="windowActionModeOverlay">true</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
   </style>
   <style name="MyTextAppearance.Material.Button" parent="@android:style/TextAppearance.Material.Button">
     <item name="textAllCaps">false</item>
     <item name="android:textAllCaps">false</item>
   </style>
-  <!--<style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
+  <style name="MyTheme.Splash" parent ="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@drawable/splash_screen</item>
     <item name="android:windowNoTitle">true</item>
     <item name="android:windowFullscreen">true</item>
     <item name="android:windowContentOverlay">@null</item>
     <item name="android:windowActionBar">true</item>
-  </style>-->
+  </style>
 </resources>
