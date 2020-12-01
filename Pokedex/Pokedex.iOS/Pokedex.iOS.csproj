@@ -145,4 +145,9 @@
   <ItemGroup>
     <BundleResource Include="Resources\pokedex_logo%403x.png" />
   </ItemGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties XamarinHotReloadDebuggerTimeoutExceptionPokedexiOSHideInfoBar="True" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

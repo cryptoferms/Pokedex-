@@ -39,9 +39,16 @@ namespace Pokedex.ViewModels
         {
             ListPokemon = GetAllPokemons();
         }
+        //método responsável por encaminhar o nome do pokemon para nossa página de BuscaPokemon
+        public async void ItemSelected(string pokemonName)
+        {
+            //Messaging center para notificar e enviar o tipo string que é o nome do pokemon, para a outra tela receber.
+            MessagingCenter.Send<string>(pokemonName, "Pokemon");
+            await App.Current.MainPage.Navigation.PopAsync();
+        }
 
         //request para busca de todos os pokemons
-        private ObservableCollection<Results> GetAllPokemons(int qtdPokemon = 20)
+        public ObservableCollection<Results> GetAllPokemons(int qtdPokemon = 20)
         {
             var url = $"https://pokeapi.co/api/v2/pokemon/?offset=0&limit={qtdPokemon}";
             using (var httpClient = new HttpClient())
@@ -65,7 +72,7 @@ namespace Pokedex.ViewModels
             }
         }
 
-        private async void CarregarMaisPokemon()
+        public async void CarregarMaisPokemon()
         {
             //activity rodando
             isRunLoading = true;

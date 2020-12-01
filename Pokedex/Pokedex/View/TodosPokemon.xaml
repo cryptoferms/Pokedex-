@@ -5,11 +5,50 @@
              Title="Todos os Pokémons"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="True"
              >
+    <NavigationPage.TitleView>
+        <Label Text="Todos os Pokemons" TextColor="White" FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Margin="10">
+            <ListView
+                ItemsSource="{Binding ListPokemon}"
+                HasUnevenRows="True"
+                 ItemTapped="ListView_ItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Padding="10"
+                                   CornerRadius="10"
+                                   Margin="10"
+                                   HasShadow="True">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="{Binding image}"
+                                           HeightRequest="60"
+                                           WidthRequest="60"/>
+                                    <Label Grid.Column="2"
+                                           Text="{Binding name}"
+                                           VerticalTextAlignment="Center"
+                                           TextColor="Black"/>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ActivityIndicator IsRunning="{Binding IsRunLoading}"
+                               Color="red"/>
+            <Button Text="Carregar mais Pokemons"
+                    TextColor="White"
+                    Style="{StaticResource Button}"
+                    Command="{Binding CarregarMaisPokemon}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

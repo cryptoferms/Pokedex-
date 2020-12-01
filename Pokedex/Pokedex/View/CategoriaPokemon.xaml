@@ -5,6 +5,15 @@
              Title="Pokemons por Categoria"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" ios:Page.UseSafeArea="True"
              BackgroundColor="#C32D2F">
+    <NavigationPage.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+        <Label Text="Pokemons por Categoria" TextColor="White" FontSize="20" FontAttributes="Bold" HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+        </Grid>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout Margin="10,0">
             <Frame
@@ -18,6 +27,7 @@
                 <Picker x:Name="categoria_pokemon"
                         Title="Selecione um tipo de Pokemon"
                         TextColor="White"
+                        BackgroundColor="{OnPlatform iOS=#931f21}"
                         FontAttributes="Bold"
                         TitleColor="White"
                         SelectedIndexChanged="categoria_pokemon_SelectedIndexChanged">
