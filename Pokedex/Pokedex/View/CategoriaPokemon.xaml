@@ -27,9 +27,9 @@
                 <Picker x:Name="categoria_pokemon"
                         Title="Selecione um tipo de Pokemon"
                         TextColor="White"
-                        BackgroundColor="{OnPlatform iOS=#931f21}"
+                        BackgroundColor="#931f21"
                         FontAttributes="Bold"
-                        TitleColor="White"
+                        TitleColor="Gray"
                         SelectedIndexChanged="categoria_pokemon_SelectedIndexChanged">
                     <Picker.Items>
                         <x:String>bug</x:String>

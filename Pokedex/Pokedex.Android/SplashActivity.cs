@@ -3,10 +3,11 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Util;
+using Pokedex.Droid;
 
-namespace Pokedex.Droid
+namespace SplashScreenExemplo.Droid
 {
-    [Activity(Theme ="@style/MyTheme.Splash",MainLauncher =true,NoHistory =true)]
+    [Activity(Theme = "@style/MyTheme.Splash", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : Activity
     {
         static readonly string TAG = "X:" + typeof(SplashActivity).Name;
@@ -17,8 +18,7 @@ namespace Pokedex.Droid
             Log.Debug(TAG, "SplashActivity.OnCreate");
         }
 
-        //Executa a tarefa de startup
-
+        // Launches the startup task
         protected override void OnResume()
         {
             base.OnResume();
@@ -26,17 +26,17 @@ namespace Pokedex.Droid
             startupWork.Start();
         }
 
-        public override void OnBackPressed()
-        {
-        }
+        // Prevent the back button from canceling the startup process
+        public override void OnBackPressed() { }
 
+        // Simulates background work that happens behind the splash screen
         async void SimulateStartup()
         {
-            Log.Debug(TAG, "Executando um trabalho de inicio isso pode levar algum tempo.");
+            Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
 
             await Task.Delay(100);
 
-            Log.Debug(TAG, "Trabalho de Inicio está completo - iniciando o MainActivity.");
+            Log.Debug(TAG, "Startup work is finished - starting MainActivity.");
             StartActivity(new Intent(Application.Context, typeof(MainActivity)));
         }
     }
