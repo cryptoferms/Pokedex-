@@ -92,7 +92,6 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\icon.png" />
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Pokedex\Pokedex.csproj">
       <Project>{76B927A2-3909-4573-8532-E84AFF978B6A}</Project>

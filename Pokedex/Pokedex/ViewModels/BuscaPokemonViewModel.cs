@@ -60,8 +60,8 @@ namespace Pokedex.ViewModels
                 BaseExperience = string.Format($"Experiência Base: {pokemonnome.Base_experience}");
                 Abilities = string.Format($"Habilidades: {pokemonnome.Abilities}");
                 Image = string.Format($"https://pokeres.bastionbot.org/images/pokemon/{pokemonnome.Id}.png");
-
             }
+
             catch (Exception e)
             {
                 Console.WriteLine("Erro na busca de Pokemon, tente novamente mais tarde" + e.Message);
